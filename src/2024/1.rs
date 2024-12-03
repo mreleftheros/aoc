@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use aoc::get_from_url;
 
 fn main() {
@@ -24,4 +26,14 @@ fn main() {
         .map(|(first, second)| (first - second).abs())
         .sum::<i32>();
     println!("PART 1: {}", r);
+
+    // part2
+    let r = list1
+        .iter()
+        .map(|x| {
+            let total = list2.iter().filter(|&y| y == x).count();
+            x * total as i32
+        })
+        .sum::<i32>();
+    println!("PART 2: {}", r);
 }
