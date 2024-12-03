@@ -1,0 +1,12 @@
+[package]
+name = "aoc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dotenvy = "0.15.7"
+reqwest = { version = "0.12.9", features = ["blocking", "cookies"] }
+
+[[bin]]
+name="2015_3"
+path="src/2015/3.rs"
