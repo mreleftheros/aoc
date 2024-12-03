@@ -93,7 +93,32 @@ fn main() -> Result<(), std::io::Error> {
         santa.move_direction(d);
     });
 
-    println!("PART 1:{}", santa.houses.len());
+    println!("PART 1: {}", santa.houses.len());
 
+    // part 2
+    let mut santa = Santa::new();
+    let mut robot = Santa::new();
+
+    contents.chars().enumerate().for_each(|(i, c)| {
+        let d = Direction::from(c);
+
+        if i % 2 == 0 {
+            santa.move_direction(d);
+        } else {
+            robot.move_direction(d);
+        }
+    });
+
+    let mut combined = HashMap::new();
+
+    for (k, v) in santa.houses {
+        combined.insert(k, v);
+    }
+
+    for (k, v) in robot.houses {
+        combined.insert(k, v);
+    }
+
+    println!("PART 2: {}", combined.len());
     Ok(())
 }
