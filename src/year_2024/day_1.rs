@@ -1,9 +1,7 @@
-use std::collections::HashMap;
+use crate::util;
 
-use aoc::get_from_url;
-
-fn main() {
-    let input = get_from_url("https://adventofcode.com/2024/day/1/input");
+pub fn run() {
+    let input = util::get_input_from_url("https://adventofcode.com/2024/day/1/input");
 
     let mut list1 = vec![];
     let mut list2 = vec![];

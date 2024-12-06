@@ -1,6 +1,5 @@
+use crate::util;
 use std::{collections::HashMap, hash::Hash};
-
-use aoc::get_from_url;
 
 #[derive(Debug, PartialEq, Hash, Clone, Copy)]
 struct Point {
@@ -83,8 +82,8 @@ impl Santa {
     }
 }
 
-fn main() -> Result<(), std::io::Error> {
-    let contents = get_from_url("https://adventofcode.com/2015/day/3/input");
+pub fn run() {
+    let contents = util::get_input_from_url("https://adventofcode.com/2015/day/3/input");
 
     let mut santa = Santa::new();
 
@@ -120,5 +119,4 @@ fn main() -> Result<(), std::io::Error> {
     }
 
     println!("PART 2: {}", combined.len());
-    Ok(())
 }

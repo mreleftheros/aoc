@@ -1,7 +1,9 @@
-use aoc::get_from_url;
+use crate::util;
 
-fn main() {
-    let input = get_from_url("https://adventofcode.com/2024/day/2/input");
+pub fn run() {
+    let input = util::get_input_from_url("https://adventofcode.com/2024/day/2/input");
+    let total = input.lines().count();
+    dbg!(total);
 
     let safe = input
         .lines()
@@ -25,12 +27,12 @@ fn main() {
                 .collect::<Vec<i32>>();
             let unsafe_indices = get_unsafe_indices(&nums, 1, 3);
             if unsafe_indices.len() == 0 {
-                true
+                return true;
             } else {
                 let r = unsafe_indices.iter().fold(false, |mut acc, curr| {
-                    //if acc == true {
-                    // return true;
-                    //}
+                    if acc {
+                        return true;
+                    }
                     let nums_filtered = nums
                         .iter()
                         .enumerate()
