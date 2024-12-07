@@ -15,10 +15,13 @@ impl Config {
     }
     fn execute(&self) {
         match (self.year, self.day) {
+            (2015, 1) => crate::year_2015::day_1::run(),
+            (2015, 2) => crate::year_2015::day_2::run(),
             (2015, 3) => crate::year_2015::day_3::run(),
             (2024, 1) => crate::year_2024::day_1::run(),
             (2024, 2) => crate::year_2024::day_2::run(),
             (2024, 3) => crate::year_2024::day_3::run(),
+            (2024, 4) => crate::year_2024::day_4::run(),
             _ => unreachable!(),
         }
     }
