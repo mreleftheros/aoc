@@ -36,6 +36,16 @@ impl Present {
     fn get_wrapping_paper(&self) -> i64 {
         self.get_surface_area() + self.get_smallest_area()
     }
+
+    fn get_ribbon(&self) -> i64 {
+        let mut dims = [self.length, self.width, self.height];
+        dims.sort();
+        let ribbon = dims.into_iter().take(2).fold(0, |mut acc, curr| {
+            acc += curr * 2;
+            acc
+        });
+        ribbon + (self.length * self.width * self.height)
+    }
 }
 
 pub fn run() {
@@ -72,4 +82,32 @@ pub fn run() {
     println!("PART 1: {}", r);
 
     // part 2
+    let r = input
+        .trim()
+        .lines()
+        .filter_map(|l| {
+            let dims = l.split("x").collect::<Vec<_>>();
+            if dims.len() != 3 {
+                return None;
+            }
+
+            let length = match dims[0].parse::<i64>().ok() {
+                Some(v) => v,
+                None => return None,
+            };
+
+            let width = match dims[1].parse::<i64>().ok() {
+                Some(v) => v,
+                None => return None,
+            };
+            let height = match dims[2].parse::<i64>().ok() {
+                Some(v) => v,
+                None => return None,
+            };
+
+            Some(Present::new(length, width, height))
+        })
+        .map(|p| p.get_ribbon())
+        .sum::<i64>();
+    println!("PART 2: {}", r);
 }
